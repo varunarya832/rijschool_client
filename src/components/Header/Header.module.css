@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 12rem;
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-weight: 700;
+  }
+  
+  .logout {
+    display: flex;
+    align-items: center;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+
+  }
+
+  .logout:hover {
+    background: #c0392b;;
+  }
+  
+  .logout img {
+    width: 1rem;
+    margin-right: 0.5rem;
+  }

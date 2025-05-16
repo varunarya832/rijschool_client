@@ -1,0 +1,56 @@
+:root {
+  --bg:     #f5f7fa;
+  --white:  #ffffff;
+  --border: #ececec;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;            /* lock to viewport height */
+  background: var(--bg);
+}
+
+.body {
+  flex: 1;                   /* fill under the header */
+  display: flex;
+  overflow: hidden;          /* prevent the page itself from scrolling */
+  padding: 2rem 12rem;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+.sidebar {
+  flex: 0 0 450px;           /* fixed 320px width */
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden;          /* keep children clipped to rounded corners */
+}
+
+.lessonListContainer {
+  flex: 1;                   /* take all leftover vertical space */
+  overflow-y: auto;          /* scroll _only_ this panel */
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow);
+  padding: 1.5rem;
+  overflow: auto;            /* scroll its own content if needed */
+}
