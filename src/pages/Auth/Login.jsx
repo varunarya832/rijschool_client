@@ -17,6 +17,8 @@ export default function Login() {
       await login({ email, password });
       navigate('/dashboard', { replace: true });
     } catch (e) {
+      console.log(e);
+      
       setError('Ongeldige gebruikersnaam of wachtwoord.');
     }
   };
