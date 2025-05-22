@@ -3,20 +3,25 @@ import { FiChevronRight, FiVideo } from 'react-icons/fi'
 import styles from './LessonItem.module.css'
 
 const LessonItem = ({ lesson, isActive, onClick }) => {
+  console.log(lesson);
   const date = new Date(lesson.date);
   const start = new Date(lesson.start);
   const end = new Date(lesson.end);
 
   const dateStr = `${date.getDate()}/${date.getMonth() + 1}/${String(date.getFullYear()).slice(-2)}`;
-  const startStr = start.toLocaleTimeString('en-US', {
+  const startStr = start.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/Paris' // CEST
+
   });
-  const endStr = end.toLocaleTimeString('en-US', {
+  const endStr = end.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/Paris' // CEST
+
   });
 
   return (

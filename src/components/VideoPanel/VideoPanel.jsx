@@ -43,15 +43,19 @@ export default function VideoPanel({ selectedLesson }) {
   const end = new Date(selectedLesson.end);
 
   const dateStr = `${date.getDate()}/${date.getMonth() + 1}/${String(date.getFullYear()).slice(-2)}`;
-  const startStr = start.toLocaleTimeString('en-US', {
+  const startStr = start.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/Paris' // CEST
+
   });
-  const endStr = end.toLocaleTimeString('en-US', {
+  const endStr = end.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/Paris' // CEST
+
   });
 
   return (
