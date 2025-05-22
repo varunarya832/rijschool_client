@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import styles from './VideoPanel.module.css';
 import VideoModal from './VideoModal';
@@ -39,14 +38,20 @@ export default function VideoPanel({ selectedLesson }) {
     );
   }
 
-  const dateStr = selectedLesson.date.toLocaleDateString('nl-NL', {
-    day: 'numeric', month: 'long', year: 'numeric'
+  const date = new Date(selectedLesson.date);
+  const start = new Date(selectedLesson.start);
+  const end = new Date(selectedLesson.end);
+
+  const dateStr = `${date.getDate()}/${date.getMonth() + 1}/${String(date.getFullYear()).slice(-2)}`;
+  const startStr = start.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
   });
-  const startStr = selectedLesson.start.toLocaleTimeString('nl-NL', {
-    hour: '2-digit', minute: '2-digit'
-  });
-  const endStr = selectedLesson.end.toLocaleTimeString('nl-NL', {
-    hour: '2-digit', minute: '2-digit'
+  const endStr = end.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
   });
 
   return (

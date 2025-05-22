@@ -56,6 +56,7 @@
 .noVideos {
   color: var(--gray-medium);
   font-size: 0.9rem;
+  text-align: center;
 }
 
 /* Each video card */

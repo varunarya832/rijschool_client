@@ -1,22 +1,22 @@
-
 import React from 'react'
 import { FiChevronRight, FiVideo } from 'react-icons/fi'
 import styles from './LessonItem.module.css'
 
-
 const LessonItem = ({ lesson, isActive, onClick }) => {
-  const dateStr = lesson.date.toLocaleDateString('nl-NL', {
-    day:   'numeric',
-    month: 'short',
-    year:  'numeric',
-  });
-  const startStr = lesson.start.toLocaleTimeString('nl-NL', {
-    hour:   '2-digit',
+  const date = new Date(lesson.date);
+  const start = new Date(lesson.start);
+  const end = new Date(lesson.end);
+
+  const dateStr = `${date.getDate()}/${date.getMonth() + 1}/${String(date.getFullYear()).slice(-2)}`;
+  const startStr = start.toLocaleTimeString('en-US', {
+    hour: '2-digit',
     minute: '2-digit',
+    hour12: true,
   });
-  const endStr = lesson.end.toLocaleTimeString('nl-NL', {
-    hour:   '2-digit',
+  const endStr = end.toLocaleTimeString('en-US', {
+    hour: '2-digit',
     minute: '2-digit',
+    hour12: true,
   });
 
   return (
