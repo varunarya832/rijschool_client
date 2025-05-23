@@ -4,9 +4,9 @@ import VideoModal from './VideoModal';
 import { getLessonDetails } from '../../service/lesson.service';
 
 export default function VideoPanel({ selectedLesson }) {
-  const [videos, setVideos]   = useState([]);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState(null);
+  const [error, setError] = useState(null);
   const [modalVideo, setModalVideo] = useState(null);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function VideoPanel({ selectedLesson }) {
         </label>
 
         {loading && <p>Video’s laden…</p>}
-        {error   && <p className={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
 
         {!loading && !error && videos.length === 0 && (
           <div className={styles.noVideos}>
