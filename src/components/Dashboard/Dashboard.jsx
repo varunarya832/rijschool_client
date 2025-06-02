@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
@@ -30,8 +29,8 @@ export default function Dashboard() {
         const all = await getAllLessons();
         setLessons(all);
       } catch (err) {
-        console.error(err);
-        setError('Lessen laden mislukt');
+        // console.error(err);
+        // setError('Lessen laden mislukt');
       } finally {
         setLoading(false);
       }
@@ -67,8 +66,25 @@ export default function Dashboard() {
     navigate('/login', { replace: true });
   };
 
-  if (loading) return <div className={styles.loading}>Lessen laden…</div>;
-  if (error)   return <div className={styles.error}>{error}</div>;
+  if (loading) {
+    return <div className={styles.loading}>Lessen laden…</div>;
+  }
+
+  // if (error) {
+  //   return <div className={styles.error}>{error}</div>;
+  // }
+
+  if (!lessons.length) {
+    return (
+      <div className={styles.container}>
+        <Header title="Leerling Dashboard" onLogout={handleLogout} />
+        <div className={styles.noLessons}>
+          Geen lessen gevonden.<br />
+          Neem contact op met je instructeur.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
