@@ -1,13 +1,10 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import styles from './VideoModal.module.css';
 
 const VideoModal = ({ video, onClose }) => {
   if (!video) return null;
 
-  console.log(video);
-  
-  const videoData = video.url;
+  const src = video.url;
 
   return (
     <div className={styles.overlay}>
@@ -23,25 +20,24 @@ const VideoModal = ({ video, onClose }) => {
 
         <div className={styles.body}>
           <div className={styles.videoContainer}>
-            {videoData ? (
-              <ReactPlayer
-                url={videoData}
+            {src ? (
+              <video
+                src={src}
                 controls
+                playsInline
+                webkit-playsinline="true"
                 width="100%"
                 height="100%"
-                className={styles.reactPlayer}
-              />
+                style={{ background: '#000' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             ) : (
-              <img
-                src={video.imageUrl}
-                alt="snapshot"
-                className={styles.videoImage}
-              />
+              <p>Video niet beschikbaar</p>
             )}
           </div>
 
           <div className={styles.analysisContainer}>
-            {/* your AI analysis content will go here */}
           </div>
         </div>
       </div>

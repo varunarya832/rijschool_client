@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './VideoPanel.module.css';
 import VideoModal from './VideoModal';
 import { getLessonDetails } from '../../service/lesson.service';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { toast } from 'react-toastify';
 
 export default function VideoPanel({ selectedLesson }) {
   const [videos, setVideos] = useState([]);
@@ -19,6 +21,10 @@ export default function VideoPanel({ selectedLesson }) {
           if (!cancelled) setVideos(list);
         })
         .catch(() => {
+          if (!cancelled) {
+            setError('Video’s laden mislukt');
+            toast.error('Video’s laden mislukt');
+          }
           if (!cancelled) setError('Video’s laden mislukt');
         })
         .finally(() => {
@@ -38,6 +44,14 @@ export default function VideoPanel({ selectedLesson }) {
     );
   }
 
+  if (loading) {
+    return (
+      <div className={styles.spinner}>
+        <ClipLoader size={30} color="#4968f1" />
+      </div>
+    );
+  }
+
   const date = new Date(selectedLesson.date);
   const start = new Date(selectedLesson.start);
   const end = new Date(selectedLesson.end);
@@ -46,14 +60,14 @@ export default function VideoPanel({ selectedLesson }) {
   const startStr = start.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: true,
+    hour12: false,
     timeZone: 'Europe/Paris' // CEST
 
   });
   const endStr = end.toLocaleTimeString('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: true,
+    hour12: false,
     timeZone: 'Europe/Paris' // CEST
 
   });

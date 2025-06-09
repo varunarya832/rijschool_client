@@ -7,6 +7,9 @@ import VideoPanel from '../../components/VideoPanel/VideoPanel';
 import styles from './Dashboard.module.css';
 import { useAuth } from '../../hooks/useAuth';
 import { getAllLessons } from '../../service/lesson.service';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TABS = [
   { key: 'all',    label: 'Alle Lessen' },
@@ -29,6 +32,7 @@ export default function Dashboard() {
         const all = await getAllLessons();
         setLessons(all);
       } catch (err) {
+        // toast.error('Lessen laden mislukt');
         // console.error(err);
         // setError('Lessen laden mislukt');
       } finally {
@@ -67,7 +71,7 @@ export default function Dashboard() {
   };
 
   if (loading) {
-    return <div className={styles.loading}>Lessen laden…</div>;
+    return <div className={styles.loading}><ClipLoader size={40} color="#4968f1" /></div>;
   }
 
   // if (error) {
@@ -87,7 +91,9 @@ export default function Dashboard() {
   }
 
   return (
+    <>
     <div className={styles.container}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <Header title="Leerling Dashboard" onLogout={handleLogout} />
 
       <div className={styles.body}>
@@ -114,5 +120,6 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+    </>
   );
 }
