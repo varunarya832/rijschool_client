@@ -8,6 +8,7 @@ import styles from './Dashboard.module.css';
 import { useAuth } from '../../hooks/useAuth';
 import { getAllLessons } from '../../service/lesson.service';
 import ClipLoader from 'react-spinners/ClipLoader';
+import Sidear from '../Header/Sidebar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const [lessons, setLessons]       = useState([]);
   const [loading, setLoading]       = useState(true);
   const [error, setError]           = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { logout }                  = useAuth();
   const navigate                    = useNavigate();
 
@@ -65,6 +67,14 @@ export default function Dashboard() {
 
   const selectedLesson = sortedLessons.find(l => l.id === selectedId);
 
+  const handleMenuClick = () => {
+    setIsSidebarOpen(true); // Opens the sidebar
+  };
+
+  const handleSidebarClose = () => {
+    setIsSidebarOpen(false); // Closes the sidebar
+  };
+
   const handleLogout = async () => {
     await logout();
     navigate('/login', { replace: true });
@@ -95,6 +105,11 @@ export default function Dashboard() {
     <div className={styles.container}>
       <ToastContainer position="top-right" autoClose={3000} />
       <Header title="Leerling Dashboard" onLogout={handleLogout} />
+      <Sidear 
+        isOpen={isSidebarOpen}
+        onClose={handleSidebarClose} // This closes the sidebar
+        onLogout={handleLogout}
+      />
 
       <div className={styles.body}>
         <div className={styles.content}>
